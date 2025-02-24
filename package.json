@@ -1,13 +1,10 @@
 {
   "name": "dzuelu-projen",
+  "description": "A simple standard way to setup a repo for typescript in a style Dzuelu likes.",
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
-    "clobber": "npx projen clobber",
     "compile": "npx projen compile",
-    "default": "npx projen default",
-    "eject": "npx projen eject",
-    "eslint": "npx projen eslint",
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
@@ -21,22 +18,19 @@
     "projen": "npx projen"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^2",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.5",
-    "@typescript-eslint/eslint-plugin": "^8",
-    "@typescript-eslint/parser": "^8",
     "commit-and-tag-version": "^12",
     "constructs": "^10.0.0",
-    "eslint": "^9",
-    "eslint-import-resolver-typescript": "^3.8.3",
-    "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
     "jest-junit": "^16",
     "projen": "^0.91.13",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "projen": "^0.91.13"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
@@ -84,7 +78,7 @@
       "^.+\\.[t]sx?$": [
         "ts-jest",
         {
-          "tsconfig": "tsconfig.dev.json"
+          "tsconfig": "tsconfig.json"
         }
       ]
     }
