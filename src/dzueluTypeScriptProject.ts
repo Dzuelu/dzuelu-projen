@@ -24,6 +24,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
           lib: ['ES2023'],
           target: 'ES2023'
         },
+        include: ['*.ts', '*/**.ts'],
         exclude: ['.projenrc.ts']
       },
       eslint: false,

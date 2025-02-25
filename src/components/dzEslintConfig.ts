@@ -39,8 +39,7 @@ export const ts: ConfigWithExtends = {
     },
     parser,
     parserOptions: {
-      projectService: { allowDefaultProject: ['*.ts'] },
-      // tsconfigRootDir: import.meta.dirname
+      projectService: { allowDefaultProject: ['.projenrc.ts'] },
     }
   },
   settings: {
@@ -63,7 +62,7 @@ export const ts: ConfigWithExtends = {
 };
 
 export const prettier: ConfigWithExtends = {
-  files: [`**/*{${jsExtensions.concat(jsExtensions).join(',')}}`, `*${jsExtensions.concat(jsExtensions).join(',')}`],
+  files: [`**/*{${tsExtensions.concat(jsExtensions).join(',')}}`, `*${tsExtensions.concat(jsExtensions).join(',')}`],
   plugins: {
     prettier: eslintPluginPrettier
   },
