@@ -12,12 +12,12 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
-      // buildWorkflowOptions: {
-      //   mutableBuild: false
-      // },
       defaultReleaseBranch: 'main',
       disableTsconfigDev: true,
       eslint: false,
+      githubOptions: {
+        mergify: false
+      },
       npmignoreEnabled: false,
       prettier: false,
       projenrcTs: true,
