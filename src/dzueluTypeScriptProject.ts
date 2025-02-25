@@ -14,16 +14,27 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
       defaultReleaseBranch: 'main',
       projenrcTs: true,
       disableTsconfigDev: true,
+      tsconfig: {
+        compilerOptions: {
+          rootDir: undefined,
+          noUnusedLocals: undefined,
+          tsBuildInfoFile: undefined,
+          baseUrl: 'src',
+          outDir: 'dist'
+        },
+        exclude: ['.projenrc.ts']
+      },
       eslint: false,
       prettier: false,
       ...options
     });
 
+    // scripts I don't want or use
     this.package.removeScript('clobber');
     this.package.removeScript('default');
     this.package.removeScript('eject');
 
-    if (options.dzEslint === true) {
+    if (options.dzEslint ?? true) {
       this.dzEslint = new DzEslint(this);
     }
   }
