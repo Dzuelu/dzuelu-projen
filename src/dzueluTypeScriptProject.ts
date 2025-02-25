@@ -1,5 +1,5 @@
-import { TypeScriptProject, TypeScriptProjectOptions } from "projen/lib/typescript";
-import { DzEslint } from "./components/dzEslint";
+import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
+import { DzEslint } from './components/dzEslint';
 
 export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
   name: string;

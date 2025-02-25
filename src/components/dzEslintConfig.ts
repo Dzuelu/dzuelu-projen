@@ -4,15 +4,11 @@ import eslint from '@eslint/js';
 
 import eslintPluginJest from 'eslint-plugin-jest';
 import eslintPluginNode from 'eslint-plugin-n';
-import eslintPluginPrettier  from 'eslint-plugin-prettier';
-import eslintPluginImport  from 'eslint-plugin-import';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintPluginImport from 'eslint-plugin-import';
 
 export const ignores: ConfigWithExtends = {
-  ignores: [
-    'node_modules',
-    'dist',
-    'docs'
-  ]
+  ignores: ['node_modules', 'dist', 'docs']
 };
 
 const jsExtensions = ['.mjs', '.js'];
@@ -39,7 +35,7 @@ export const ts: ConfigWithExtends = {
     },
     parser,
     parserOptions: {
-      projectService: { allowDefaultProject: ['.projenrc.ts'] },
+      projectService: { allowDefaultProject: ['.projenrc.ts'] }
     }
   },
   settings: {

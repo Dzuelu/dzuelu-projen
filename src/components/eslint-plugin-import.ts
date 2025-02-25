@@ -3,5 +3,5 @@ declare module 'eslint-plugin-import' {
     errors: never;
     recommended: never;
     warnings: never;
-  }
+  };
 }

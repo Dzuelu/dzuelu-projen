@@ -1,5 +1,5 @@
-import { Component, SampleFile } from "projen";
-import { NodeProject } from "projen/lib/javascript";
+import { Component, SampleFile } from 'projen';
+import { NodeProject } from 'projen/lib/javascript';
 
 /**
  * This is a hack until projen has the new eslint config support.
@@ -13,7 +13,8 @@ export class DzEslint extends Component {
     this.project = scope;
     this.eslintFile = new SampleFile(scope, 'eslint.config.mjs', {
       contents: [
-        "import defaultLint from './src/components/dzEslintConfig';",
+        // Print out manual default linter so we can change rules as wanted for any repo
+        "import defaultLint from 'dzuelu-projen';",
         '',
         'export default defaultLint;',
         ''
@@ -35,14 +36,10 @@ export class DzEslint extends Component {
       'eslint-plugin-n',
       'eslint-plugin-prettier',
       'prettier',
-      'typescript-eslint',
+      'typescript-eslint'
     );
     this.project.addScripts({
-      'eslint': 'eslint .'
+      eslint: 'eslint .'
     });
   }
-
-  // synthesize(): void {
-    
-  // }
 }
