@@ -16,7 +16,8 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
       disableTsconfigDev: true,
       eslint: false,
       githubOptions: {
-        mergify: false
+        mergify: false,
+        pullRequestLint: false
       },
       npmignoreEnabled: false,
       prettier: false,
