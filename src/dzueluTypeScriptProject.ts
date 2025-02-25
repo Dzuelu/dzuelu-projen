@@ -23,6 +23,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
       prettier: false,
       projenrcTs: true,
       pullRequestTemplate: false,
+      releaseToNpm: true,
       tsconfig: {
         compilerOptions: {
           baseUrl: 'src',
