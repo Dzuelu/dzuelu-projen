@@ -5,6 +5,7 @@
     "build": "npx projen build",
     "bump": "npx projen bump",
     "compile": "npx projen compile",
+    "eslint": "npx projen eslint",
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
@@ -15,8 +16,7 @@
     "unbump": "npx projen unbump",
     "upgrade": "npx projen upgrade",
     "watch": "npx projen watch",
-    "projen": "npx projen",
-    "eslint": "eslint ."
+    "projen": "npx projen"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.0",

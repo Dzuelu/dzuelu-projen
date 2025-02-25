@@ -50,7 +50,7 @@ export const ts: ConfigWithExtends = {
     '@typescript-eslint/naming-convention': [
       'error',
       { format: null, modifiers: ['requiresQuotes'], selector: 'default' },
-      { format: ['camelCase', 'PascalCase'], selector: 'default' }
+      { format: ['camelCase', 'PascalCase', 'UPPER_CASE'], selector: 'default' }
     ],
     '@typescript-eslint/require-await': 'error',
     camelcase: 'off',

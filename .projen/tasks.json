@@ -104,6 +104,15 @@
         }
       ]
     },
+    "eslint": {
+      "name": "eslint",
+      "description": "Runs eslint against the codebase",
+      "steps": [
+        {
+          "exec": "eslint ."
+        }
+      ]
+    },
     "install": {
       "name": "install",
       "description": "Install project dependencies and update lockfile (non-frozen)",
@@ -177,6 +186,9 @@
         {
           "exec": "jest --passWithNoTests --updateSnapshot",
           "receiveArgs": true
+        },
+        {
+          "spawn": "eslint"
         }
       ]
     },

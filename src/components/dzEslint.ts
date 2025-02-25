@@ -1,12 +1,13 @@
-import { Component, SampleFile } from 'projen';
+import { Component, SampleFile, Task } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
 
 /**
  * This is a hack until projen has the new eslint config support.
  */
 export class DzEslint extends Component {
-  eslintFile: SampleFile;
-  project: NodeProject;
+  public readonly eslintFile: SampleFile;
+  public readonly eslintTask: Task;
+  public readonly project: NodeProject;
 
   constructor(scope: NodeProject, id?: string) {
     super(scope, id ?? 'dzuelu-eslint');
@@ -20,6 +21,12 @@ export class DzEslint extends Component {
         ''
       ].join('\n')
     });
+
+    this.eslintTask = this.project.addTask('eslint', {
+      description: 'Runs eslint against the codebase',
+      exec: 'eslint . --fix'
+    });
+    this.project.testTask.spawn(this.eslintTask);
   }
 
   preSynthesize(): void {
@@ -39,8 +46,5 @@ export class DzEslint extends Component {
       'prettier',
       'typescript-eslint'
     );
-    this.project.addScripts({
-      eslint: 'eslint .'
-    });
   }
 }
