@@ -12,11 +12,16 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
+      // buildWorkflowOptions: {
+      //   mutableBuild: false
+      // },
       defaultReleaseBranch: 'main',
       disableTsconfigDev: true,
       eslint: false,
+      npmignoreEnabled: false,
       prettier: false,
       projenrcTs: true,
+      pullRequestTemplate: false,
       tsconfig: {
         compilerOptions: {
           baseUrl: 'src',
@@ -37,6 +42,8 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     this.package.removeScript('clobber');
     this.package.removeScript('default');
     this.package.removeScript('eject');
+
+    this.package.addField('files', ['dist/src']);
 
     if (options.dzEslint ?? true) {
       this.dzEslint = new DzEslint(this);
