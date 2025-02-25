@@ -1,8 +1,11 @@
-import { config, ConfigWithExtends } from 'typescript-eslint';
+import { config, configs, ConfigWithExtends, parser } from 'typescript-eslint';
+import { ArrowParens, PrettierSettings, TrailingComma } from 'projen/lib/javascript';
+import eslint from '@eslint/js';
 
+import eslintPluginJest from 'eslint-plugin-jest';
 import eslintPluginNode from 'eslint-plugin-n';
 import eslintPluginPrettier  from 'eslint-plugin-prettier';
-import { ArrowParens, PrettierSettings, TrailingComma } from 'projen/lib/javascript';
+import eslintPluginImport  from 'eslint-plugin-import';
 
 export const ignores: ConfigWithExtends = {
   ignores: [
@@ -14,7 +17,7 @@ export const ignores: ConfigWithExtends = {
 
 const jsExtensions = ['.mjs', '.js'];
 export const js: ConfigWithExtends = {
-  files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`]
+  // files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`]
 };
 
 const tsExtensions = ['.ts', '.d.ts'];
@@ -22,6 +25,40 @@ export const ts: ConfigWithExtends = {
   files: [`**/*{${tsExtensions.join(',')}}`, `*${tsExtensions.join(',')}`],
   plugins: {
     n: eslintPluginNode
+  },
+  extends: [
+    // eslintPluginImport.flatConfigs.errors,
+    // eslintPluginImport.flatConfigs.warnings,
+    configs.strictTypeChecked,
+    configs.stylisticTypeChecked,
+    eslint.configs.recommended
+  ],
+  languageOptions: {
+    globals: {
+      ...eslintPluginNode.configs['flat/recommended'].languageOptions?.globals
+    },
+    parser,
+    parserOptions: {
+      projectService: { allowDefaultProject: ['*.ts'] },
+      // tsconfigRootDir: import.meta.dirname
+    }
+  },
+  settings: {
+    'import/extensions': tsExtensions.concat(jsExtensions),
+    'import/parsers': { '@typescript-eslint/parser': tsExtensions },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json'
+      },
+      node: {
+        moduleDirectory: ['./src', './node_modules']
+      }
+    },
+    node: {
+      extensions: tsExtensions,
+      resolvePaths: ['./src', './node_modules']
+    }
   }
 };
 

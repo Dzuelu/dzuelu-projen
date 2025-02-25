@@ -1,3 +1,3 @@
-import defaultLint from './src/index';
+import { defaultLint } from './dist/index.js';
 
 export default defaultLint;
