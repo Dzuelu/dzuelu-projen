@@ -59,6 +59,10 @@
       "type": "build"
     },
     {
+      "name": "eslint-plugin-perfectionist",
+      "type": "build"
+    },
+    {
       "name": "eslint-plugin-prettier",
       "type": "build"
     },

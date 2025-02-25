@@ -1,9 +1,10 @@
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
+
 import { DzEslint } from './components/dzEslint';
 
 export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
-  name: string;
   dzEslint?: boolean;
+  name: string;
 }
 
 export class DzueluTypeScriptProject extends TypeScriptProject {
@@ -12,23 +13,23 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
       defaultReleaseBranch: 'main',
-      projenrcTs: true,
       disableTsconfigDev: true,
-      tsconfig: {
-        compilerOptions: {
-          rootDir: undefined,
-          noUnusedLocals: undefined,
-          tsBuildInfoFile: undefined,
-          baseUrl: 'src',
-          outDir: 'dist',
-          lib: ['ES2023'],
-          target: 'ES2023'
-        },
-        include: ['*.ts', '*/**.ts'],
-        exclude: ['.projenrc.ts']
-      },
       eslint: false,
       prettier: false,
+      projenrcTs: true,
+      tsconfig: {
+        compilerOptions: {
+          baseUrl: 'src',
+          lib: ['ES2023'],
+          noUnusedLocals: undefined,
+          outDir: 'dist',
+          rootDir: undefined,
+          target: 'ES2023',
+          tsBuildInfoFile: undefined
+        },
+        exclude: ['.projenrc.ts'],
+        include: ['*.ts', '*/**.ts']
+      },
       ...options
     });
 

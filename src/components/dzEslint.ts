@@ -5,8 +5,8 @@ import { NodeProject } from 'projen/lib/javascript';
  * This is a hack until projen has the new eslint config support.
  */
 export class DzEslint extends Component {
-  project: NodeProject;
   eslintFile: SampleFile;
+  project: NodeProject;
 
   constructor(scope: NodeProject, id?: string) {
     super(scope, id ?? 'dzuelu-eslint');
@@ -31,6 +31,7 @@ export class DzEslint extends Component {
       'eslint',
       'eslint-config-prettier',
       'eslint-import-resolver-typescript',
+      'eslint-plugin-perfectionist',
       'eslint-plugin-import',
       'eslint-plugin-jest',
       'eslint-plugin-n',

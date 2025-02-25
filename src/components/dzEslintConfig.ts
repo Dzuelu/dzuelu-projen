@@ -1,13 +1,16 @@
-import { config, configs, ConfigWithExtends, parser } from 'typescript-eslint';
-import { ArrowParens, PrettierSettings, TrailingComma } from 'projen/lib/javascript';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import eslint from '@eslint/js';
-
-import eslintPluginJest from 'eslint-plugin-jest';
-import eslintPluginNode from 'eslint-plugin-n';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginJest from 'eslint-plugin-jest';
+import eslintPluginNode from 'eslint-plugin-n';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as eslintPluginPerfectionist from 'eslint-plugin-perfectionist';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import { ArrowParens, PrettierSettings, TrailingComma } from 'projen/lib/javascript';
+import { config, configs, ConfigWithExtends, parser } from 'typescript-eslint';
 
 export const ignores: ConfigWithExtends = {
   ignores: ['node_modules', 'dist', 'docs']
@@ -15,23 +18,22 @@ export const ignores: ConfigWithExtends = {
 
 const jsExtensions = ['.mjs', '.js'];
 export const js: ConfigWithExtends = {
-  files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`],
-  extends: [configs.disableTypeChecked]
+  extends: [configs.disableTypeChecked],
+  files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`]
 };
 
 const tsExtensions = ['.ts', '.d.ts'];
 export const ts: ConfigWithExtends = {
-  files: [`**/*{${tsExtensions.join(',')}}`, `*${tsExtensions.join(',')}`],
-  plugins: {
-    n: eslintPluginNode
-  },
   extends: [
     eslintPluginImport.flatConfigs.errors,
     eslintPluginImport.flatConfigs.warnings,
     configs.strictTypeChecked,
     configs.stylisticTypeChecked,
-    eslint.configs.recommended
+    eslint.configs.recommended,
+    // eslint-disable-next-line import/namespace
+    eslintPluginPerfectionist.configs['recommended-natural']
   ],
+  files: [`**/*{${tsExtensions.join(',')}}`, `*${tsExtensions.join(',')}`],
   languageOptions: {
     globals: {
       ...eslintPluginNode.configs['flat/recommended'].languageOptions?.globals
@@ -41,22 +43,8 @@ export const ts: ConfigWithExtends = {
       projectService: { allowDefaultProject: ['.projenrc.ts'] }
     }
   },
-  settings: {
-    'import/extensions': tsExtensions.concat(jsExtensions),
-    'import/parsers': { '@typescript-eslint/parser': tsExtensions },
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-        project: './tsconfig.json'
-      },
-      node: {
-        moduleDirectory: ['./src', './node_modules']
-      }
-    },
-    node: {
-      extensions: tsExtensions.concat(jsExtensions),
-      resolvePaths: ['./src', './node_modules']
-    }
+  plugins: {
+    n: eslintPluginNode
   },
   rules: {
     '@typescript-eslint/naming-convention': [
@@ -65,9 +53,27 @@ export const ts: ConfigWithExtends = {
       { format: ['camelCase', 'PascalCase'], selector: 'default' }
     ],
     '@typescript-eslint/require-await': 'error',
+    camelcase: 'off',
     'import/extensions': ['error', 'never', { ignorePackages: true }],
     'import/no-duplicates': 'error',
-    camelcase: 'off'
+    'no-throw-literal': 'error'
+  },
+  settings: {
+    'import/extensions': tsExtensions.concat(jsExtensions),
+    'import/parsers': { '@typescript-eslint/parser': tsExtensions },
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['./src', './node_modules']
+      },
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json'
+      }
+    },
+    node: {
+      extensions: tsExtensions.concat(jsExtensions),
+      resolvePaths: ['./src', './node_modules']
+    }
   }
 };
 
@@ -94,13 +100,13 @@ export const jest: ConfigWithExtends = {
   ...eslintPluginJest.configs['flat/recommended'],
   ...eslintPluginJest.configs['flat/style'],
   files: ['test/**.ts'],
-  plugins: { jest: eslintPluginJest },
   languageOptions: {
     globals: {
       ...eslintPluginNode.configs['flat/recommended'].languageOptions?.globals,
       ...eslintPluginJest.environments.globals.globals
     }
   },
+  plugins: { jest: eslintPluginJest },
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off'
