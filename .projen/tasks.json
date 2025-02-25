@@ -109,7 +109,7 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint ."
+          "exec": "eslint . --fix"
         }
       ]
     },
