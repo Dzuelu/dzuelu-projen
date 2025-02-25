@@ -47,7 +47,7 @@
   "dependencies": {
     "projen": "^0.91.13"
   },
-  "main": "lib/index.js",
+  "main": "dist/src/index.js",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
@@ -98,7 +98,7 @@
       ]
     }
   },
-  "types": "lib/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist/src"
   ],

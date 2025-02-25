@@ -13,7 +13,6 @@
     ],
     "module": "CommonJS",
     "noEmitOnError": false,
-    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

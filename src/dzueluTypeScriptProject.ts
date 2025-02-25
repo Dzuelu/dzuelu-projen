@@ -26,6 +26,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
         compilerOptions: {
           baseUrl: 'src',
           lib: ['ES2023'],
+          noFallthroughCasesInSwitch: undefined,
           noUnusedLocals: undefined,
           outDir: 'dist',
           rootDir: undefined,
@@ -44,6 +45,8 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     this.package.removeScript('eject');
 
     this.package.addField('files', ['dist/src']);
+    this.package.addField('main', 'dist/src/index.js');
+    this.package.addField('types', 'dist/src/index.d.ts');
 
     if (options.dzEslint ?? true) {
       this.dzEslint = new DzEslint(this);
