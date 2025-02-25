@@ -20,7 +20,9 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
           noUnusedLocals: undefined,
           tsBuildInfoFile: undefined,
           baseUrl: 'src',
-          outDir: 'dist'
+          outDir: 'dist',
+          lib: ['ES2023'],
+          target: 'ES2023'
         },
         exclude: ['.projenrc.ts']
       },
