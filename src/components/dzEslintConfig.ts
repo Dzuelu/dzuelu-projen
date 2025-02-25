@@ -54,6 +54,15 @@ export const ts: ConfigWithExtends = {
       extensions: tsExtensions,
       resolvePaths: ['./src', './node_modules']
     }
+  },
+  rules: {
+    '@typescript-eslint/naming-convention': [
+      'error',
+      { format: null, modifiers: ['requiresQuotes'], selector: 'default' },
+      { format: ['camelCase', 'PascalCase'], selector: 'default' }
+    ],
+    '@typescript-eslint/require-await': 'error',
+    camelcase: 'off'
   }
 };
 
@@ -76,7 +85,22 @@ export const prettier: ConfigWithExtends = {
   }
 };
 
-export const jest: ConfigWithExtends = {};
+export const jest: ConfigWithExtends = {
+  ...eslintPluginJest.configs['flat/recommended'],
+  ...eslintPluginJest.configs['flat/style'],
+  files: ['test/**.ts'],
+  plugins: { jest: eslintPluginJest },
+  languageOptions: {
+    globals: {
+      ...eslintPluginNode.configs['flat/recommended'].languageOptions?.globals,
+      ...eslintPluginJest.environments.globals.globals
+    }
+  },
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off'
+  }
+};
 
 export const tsDeclaration: ConfigWithExtends = {
   files: ['*.d.ts'],
