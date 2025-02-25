@@ -5,7 +5,9 @@ import eslint from '@eslint/js';
 import eslintPluginJest from 'eslint-plugin-jest';
 import eslintPluginNode from 'eslint-plugin-n';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
-import eslintPluginImport from 'eslint-plugin-import';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as eslintPluginImport from 'eslint-plugin-import';
 
 export const ignores: ConfigWithExtends = {
   ignores: ['node_modules', 'dist', 'docs']
@@ -13,7 +15,8 @@ export const ignores: ConfigWithExtends = {
 
 const jsExtensions = ['.mjs', '.js'];
 export const js: ConfigWithExtends = {
-  // files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`]
+  files: [`**/*{${jsExtensions.join(',')}}`, `*${jsExtensions.join(',')}`],
+  extends: [configs.disableTypeChecked]
 };
 
 const tsExtensions = ['.ts', '.d.ts'];
@@ -23,8 +26,8 @@ export const ts: ConfigWithExtends = {
     n: eslintPluginNode
   },
   extends: [
-    // eslintPluginImport.flatConfigs.errors,
-    // eslintPluginImport.flatConfigs.warnings,
+    eslintPluginImport.flatConfigs.errors,
+    eslintPluginImport.flatConfigs.warnings,
     configs.strictTypeChecked,
     configs.stylisticTypeChecked,
     eslint.configs.recommended
@@ -51,7 +54,7 @@ export const ts: ConfigWithExtends = {
       }
     },
     node: {
-      extensions: tsExtensions,
+      extensions: tsExtensions.concat(jsExtensions),
       resolvePaths: ['./src', './node_modules']
     }
   },
@@ -62,6 +65,8 @@ export const ts: ConfigWithExtends = {
       { format: ['camelCase', 'PascalCase'], selector: 'default' }
     ],
     '@typescript-eslint/require-await': 'error',
+    'import/extensions': ['error', 'never', { ignorePackages: true }],
+    'import/no-duplicates': 'error',
     camelcase: 'off'
   }
 };
