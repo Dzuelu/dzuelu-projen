@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import { Component } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
 
@@ -8,7 +9,7 @@ export class GithubRepoUrl extends Component {
   get url() {
     return this.repoUrl;
   }
-  private readonly repoUrl: string | undefined;
+  private repoUrl: string | undefined;
 
   constructor(project: NodeProject, id?: string) {
     super(project, id ?? 'github-repo-url');
@@ -30,6 +31,39 @@ export class GithubRepoUrl extends Component {
   }
 
   preSynthesize(): void {
-    //
+    let remotes: string[];
+    try {
+      remotes = execSync('git config -l')
+        .toString()
+        .split('\n')
+        .filter(r => this.allowedRemotes.some(allowed => r.startsWith(allowed)))
+        .map(r => r.trim());
+    } catch {
+      throw new Error('Error getting git config');
+    }
+    if (remotes.length === 0) {
+      throw new Error('No valid git remotes found!');
+    }
+    this.repoUrl = this.allowedRemotes.reduce((foundRemote: string | undefined, allowedRemote) => {
+      if (foundRemote != null) {
+        return foundRemote;
+      }
+      const found = remotes.find(remote => remote.startsWith(allowedRemote));
+      return found?.split('=')[1];
+    }, undefined);
+
+    if (this.url != null) {
+      // eslint-disable-next-line
+      if (this.project.manifest?.homepage == null) {
+        this.project.package.addField('homepage', GithubRepoUrl.httpUrl(this.url));
+      }
+      // eslint-disable-next-line
+      if (this.project.manifest?.repository == null) {
+        this.project.package.addField('repository', {
+          type: 'git',
+          url: GithubRepoUrl.sshUrl(this.url)
+        });
+      }
+    }
   }
 }

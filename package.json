@@ -1,6 +1,10 @@
 {
   "name": "dzuelu-projen",
   "description": "A simple standard way to setup a repo for typescript in a style Dzuelu likes.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Dzuelu/dzuelu-projen.git"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
@@ -49,6 +53,7 @@
   },
   "main": "dist/src/index.js",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/Dzuelu/dzuelu-projen",
   "publishConfig": {
     "access": "public"
   },
