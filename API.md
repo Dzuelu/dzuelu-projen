@@ -1764,6 +1764,7 @@ new GithubRepoUrl(project: NodeProject, id?: string)
 | <code><a href="#dzuelu-projen.GithubRepoUrl.postSynthesize">postSynthesize</a></code> | Called after synthesis. |
 | <code><a href="#dzuelu-projen.GithubRepoUrl.preSynthesize">preSynthesize</a></code> | Called before synthesis. |
 | <code><a href="#dzuelu-projen.GithubRepoUrl.synthesize">synthesize</a></code> | Synthesizes files to the project output directory. |
+| <code><a href="#dzuelu-projen.GithubRepoUrl.setUrl">setUrl</a></code> | *No description.* |
 
 ---
 
@@ -1800,6 +1801,12 @@ public synthesize(): void
 ```
 
 Synthesizes files to the project output directory.
+
+##### `setUrl` <a name="setUrl" id="dzuelu-projen.GithubRepoUrl.setUrl"></a>
+
+```typescript
+public setUrl(): void
+```
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
