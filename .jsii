@@ -216,7 +216,7 @@
         },
         "locationInModule": {
           "filename": "src/dzueluTypeScriptProject.ts",
-          "line": 46
+          "line": 48
         },
         "parameters": [
           {
@@ -230,7 +230,7 @@
       "kind": "class",
       "locationInModule": {
         "filename": "src/dzueluTypeScriptProject.ts",
-        "line": 42
+        "line": 44
       },
       "name": "DzueluTypeScriptProject",
       "properties": [
@@ -240,7 +240,7 @@
           },
           "locationInModule": {
             "filename": "src/dzueluTypeScriptProject.ts",
-            "line": 43
+            "line": 45
           },
           "name": "dzEslint",
           "optional": true,
@@ -254,7 +254,7 @@
           },
           "locationInModule": {
             "filename": "src/dzueluTypeScriptProject.ts",
-            "line": 44
+            "line": 46
           },
           "name": "githubRepoUrl",
           "optional": true,
@@ -278,7 +278,7 @@
       "kind": "interface",
       "locationInModule": {
         "filename": "src/dzueluTypeScriptProject.ts",
-        "line": 7
+        "line": 8
       },
       "name": "DzueluTypeScriptProjectOptions",
       "properties": [
@@ -290,7 +290,7 @@
           "immutable": true,
           "locationInModule": {
             "filename": "src/dzueluTypeScriptProject.ts",
-            "line": 8
+            "line": 9
           },
           "name": "dzEslint",
           "optional": true,
@@ -464,5 +464,5 @@
     }
   },
   "version": "0.0.0",
-  "fingerprint": "jNY2V27WmvjFAI5VxuainGZnB4OkhSq0P0j2F/Yi630="
+  "fingerprint": "ChafGx8b8mLgbEwjGLTtoxGm3GUtgxbJFtSfz9CT8cc="
 }
