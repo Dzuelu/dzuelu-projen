@@ -29,6 +29,7 @@ export class DzueluJsiiProject extends JsiiProject {
       // @ts-ignore
       repositoryUrl: '',
       ...dzCommonOptionDefaults,
+      disableTsconfigDev: undefined, // jsii forced option...
       ...options
     });
 
