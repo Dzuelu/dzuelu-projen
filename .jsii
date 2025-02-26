@@ -92,7 +92,7 @@
   },
   "name": "dzuelu-projen",
   "readme": {
-    "markdown": "# dzuelu-projen\nA projen config that will setup repos easily and how I like them to be.\n"
+    "markdown": "# dzuelu-projen\nA projen config that will setup repos easily and how I like them to be.\n\n"
   },
   "repository": {
     "type": "git",
@@ -464,5 +464,5 @@
     }
   },
   "version": "0.0.0",
-  "fingerprint": "ChafGx8b8mLgbEwjGLTtoxGm3GUtgxbJFtSfz9CT8cc="
+  "fingerprint": "zJ09zNtqOafMZ84yDNzQ4IFP2RnFKXxx3JBez0pXHkc="
 }
