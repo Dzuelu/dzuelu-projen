@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { GithubCredentials } from 'projen/lib/github';
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 
 import { GithubRepoUrl } from './components/github-repo-url';
@@ -19,6 +20,7 @@ export const dzCommonOptionDefaults: DzueluTypeScriptProjectOptions = {
   name: '', // Overridden by incoming param
   npmignoreEnabled: false,
   prettier: false,
+  projenCredentials: GithubCredentials.fromPersonalAccessToken({ secret: 'GITHUB_TOKEN' }),
   projenrcTs: true,
   pullRequestTemplate: false,
   tsconfig: {
