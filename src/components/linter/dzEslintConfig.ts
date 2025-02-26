@@ -56,7 +56,8 @@ export const ts: ConfigWithExtends = {
     camelcase: 'off',
     'import/extensions': ['error', 'never', { ignorePackages: true }],
     'import/no-duplicates': 'error',
-    'no-throw-literal': 'error'
+    'no-throw-literal': 'error',
+    'perfectionist/sort-imports': ['error', { newlinesBetween: 'never', type: 'unsorted' }]
   },
   settings: {
     'import/extensions': tsExtensions.concat(jsExtensions),

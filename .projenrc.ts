@@ -8,4 +8,7 @@ const project = new DzueluTypeScriptProject({
 
 project.addDeps('projen');
 
+// Only needed here, recompile lint rules before running linter
+project.tasks.tryFind('eslint')?.prependExec('npx projen compile');
+
 project.synth();

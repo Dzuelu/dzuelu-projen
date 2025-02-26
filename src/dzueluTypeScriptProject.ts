@@ -1,5 +1,4 @@
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
-
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
