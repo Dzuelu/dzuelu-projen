@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
-export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
+export interface DzueluTypeScriptProjectOptions extends Omit<TypeScriptProjectOptions, 'defaultReleaseBranch'> {
+  defaultReleaseBranch?: string;
   dzEslint?: boolean;
   name: string;
 }
@@ -43,6 +45,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
+      // @ts-ignore
       defaultReleaseBranch: '',
       ...dzCommonOptionDefaults,
       ...options
