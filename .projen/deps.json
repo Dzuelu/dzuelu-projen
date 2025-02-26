@@ -76,6 +76,14 @@
       "type": "build"
     },
     {
+      "name": "jsii",
+      "type": "build"
+    },
+    {
+      "name": "jsii-pacmak",
+      "type": "build"
+    },
+    {
       "name": "prettier",
       "type": "build"
     },
@@ -98,6 +106,10 @@
     {
       "name": "typescript-eslint",
       "type": "build"
+    },
+    {
+      "name": "constructs",
+      "type": "runtime"
     },
     {
       "name": "projen",

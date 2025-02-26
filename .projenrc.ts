@@ -1,3 +1,4 @@
+import { ProjenJsii } from './src/components/projen-jsii';
 import { DzueluTypeScriptProject } from './src/dzueluTypeScriptProject';
 
 const project = new DzueluTypeScriptProject({
@@ -6,6 +7,8 @@ const project = new DzueluTypeScriptProject({
   releaseToNpm: true
 });
 
-project.addDeps('projen');
+project.addDeps('projen', 'constructs');
+
+project.AddComponent(new ProjenJsii(project));
 
 project.synth();
