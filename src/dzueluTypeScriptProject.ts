@@ -1,3 +1,4 @@
+import { Component } from 'projen';
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 
 import { GithubRepoUrl } from './components/github-repo-url';
@@ -9,8 +10,8 @@ export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjec
 }
 
 export class DzueluTypeScriptProject extends TypeScriptProject {
+  AddedComponents: Component[] = [];
   dzEslint?: DzEslint;
-  githubRepoUrl?: GithubRepoUrl;
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
@@ -52,9 +53,13 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     this.package.addField('types', 'dist/src/index.d.ts');
 
     if (options.dzEslint ?? true) {
-      this.dzEslint = new DzEslint(this);
+      this.AddComponent(new DzEslint(this));
     }
 
-    this.githubRepoUrl = new GithubRepoUrl(this);
+    this.AddComponent(new GithubRepoUrl(this));
+  }
+
+  public AddComponent(...components: Component[]) {
+    this.AddedComponents.push(...components);
   }
 }
