@@ -1,17 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { JsiiProject, JsiiProjectOptions } from 'projen/lib/cdk';
 
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 import { dzCommonOptionDefaults } from './dzueluTypeScriptProject';
 
-export interface DzueluJsiiOptions extends Omit<JsiiProjectOptions, 'defaultReleaseBranch' | 'repositoryUrl'> {
+export interface DzueluJsiiOptions extends JsiiProjectOptions {
   author: string;
   authorAddress: string;
-  defaultReleaseBranch?: string;
   dzEslint?: boolean;
   name: string;
-  repositoryUrl?: string;
 }
 
 /**
@@ -24,12 +21,9 @@ export class DzueluJsiiProject extends JsiiProject {
 
   constructor(options: DzueluJsiiOptions) {
     super({
-      // @ts-ignore
-      defaultReleaseBranch: '',
-      // @ts-ignore
-      repositoryUrl: '',
       ...dzCommonOptionDefaults,
       disableTsconfigDev: false, // jsii forced option...
+      npmignoreEnabled: true,
       tsconfig: {
         ...dzCommonOptionDefaults.tsconfig,
         compilerOptions: {
