@@ -43,31 +43,8 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
-      defaultReleaseBranch: 'main',
-      disableTsconfigDev: true,
-      eslint: false,
-      githubOptions: {
-        mergify: false,
-        pullRequestLint: false
-      },
-      npmignoreEnabled: false,
-      prettier: false,
-      projenrcTs: true,
-      pullRequestTemplate: false,
-      tsconfig: {
-        compilerOptions: {
-          baseUrl: 'src',
-          lib: ['ES2023'],
-          noFallthroughCasesInSwitch: undefined,
-          noUnusedLocals: undefined,
-          outDir: 'dist',
-          rootDir: undefined,
-          target: 'ES2023',
-          tsBuildInfoFile: undefined
-        },
-        exclude: ['.projenrc.ts'],
-        include: ['*.ts', '*/**.ts']
-      },
+      defaultReleaseBranch: '',
+      ...dzCommonOptionDefaults,
       ...options
     });
 
