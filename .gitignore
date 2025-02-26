@@ -42,5 +42,6 @@ junit.xml
 !/src/
 /lib
 /dist/
+.jsii
 !/API.md
 !/.projenrc.ts

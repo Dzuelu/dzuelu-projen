@@ -44,8 +44,8 @@ export class DzueluJsiiProject extends JsiiProject {
     this.package.removeScript('default');
     this.package.removeScript('eject');
 
-    // I've broken the jsii flow somehow, and it needs these now
-    this.gitignore.removePatterns('tsconfig.json', '.jsii');
+    // force include our now custom tsconfig
+    this.gitignore.removePatterns('tsconfig.json');
 
     this.package.addField('files', ['dist/src']);
     this.package.addField('main', 'dist/src/index.js');
