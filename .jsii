@@ -1,0 +1,468 @@
+{
+  "author": {
+    "email": "projen@dzuelu.com",
+    "name": "Dzuelu",
+    "roles": [
+      "author"
+    ]
+  },
+  "dependencies": {
+    "constructs": "^10.4.2",
+    "projen": "^0.91.13"
+  },
+  "dependencyClosure": {
+    "constructs": {
+      "targets": {
+        "dotnet": {
+          "namespace": "Constructs",
+          "packageId": "Constructs"
+        },
+        "go": {
+          "moduleName": "github.com/aws/constructs-go"
+        },
+        "java": {
+          "maven": {
+            "artifactId": "constructs",
+            "groupId": "software.constructs"
+          },
+          "package": "software.constructs"
+        },
+        "js": {
+          "npm": "constructs"
+        },
+        "python": {
+          "distName": "constructs",
+          "module": "constructs"
+        }
+      }
+    },
+    "projen": {
+      "submodules": {
+        "projen.awscdk": {},
+        "projen.build": {},
+        "projen.cdk": {},
+        "projen.cdk8s": {},
+        "projen.cdktf": {},
+        "projen.circleci": {},
+        "projen.github": {},
+        "projen.github.workflows": {},
+        "projen.gitlab": {},
+        "projen.java": {},
+        "projen.javascript": {},
+        "projen.python": {},
+        "projen.release": {},
+        "projen.typescript": {},
+        "projen.vscode": {},
+        "projen.web": {}
+      },
+      "targets": {
+        "go": {
+          "moduleName": "github.com/projen/projen-go"
+        },
+        "java": {
+          "maven": {
+            "artifactId": "projen",
+            "groupId": "io.github.cdklabs"
+          },
+          "package": "io.github.cdklabs.projen"
+        },
+        "js": {
+          "npm": "projen"
+        },
+        "python": {
+          "distName": "projen",
+          "module": "projen"
+        }
+      }
+    }
+  },
+  "description": "A simple standard way to setup a repo for typescript in a style Dzuelu likes.",
+  "docs": {
+    "stability": "stable"
+  },
+  "homepage": "https://github.com/Dzuelu/dzuelu-projen",
+  "jsiiVersion": "5.6.11 (build fa7dfe5)",
+  "license": "Apache-2.0",
+  "metadata": {
+    "jsii": {
+      "pacmak": {
+        "hasDefaultInterfaces": true
+      }
+    }
+  },
+  "name": "dzuelu-projen",
+  "readme": {
+    "markdown": "# dzuelu-projen\nA projen config that will setup repos easily and how I like them to be.\n"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dzuelu/dzuelu-projen.git"
+  },
+  "schema": "jsii/0.10.0",
+  "targets": {
+    "js": {
+      "npm": "dzuelu-projen"
+    }
+  },
+  "types": {
+    "dzuelu-projen.DzEslint": {
+      "assembly": "dzuelu-projen",
+      "base": "projen.Component",
+      "docs": {
+        "stability": "stable",
+        "summary": "This is a hack until projen has the new eslint config support."
+      },
+      "fqn": "dzuelu-projen.DzEslint",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        },
+        "locationInModule": {
+          "filename": "src/components/linter/dzEslint.ts",
+          "line": 12
+        },
+        "parameters": [
+          {
+            "name": "scope",
+            "type": {
+              "fqn": "projen.javascript.NodeProject"
+            }
+          },
+          {
+            "name": "id",
+            "optional": true,
+            "type": {
+              "primitive": "string"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/components/linter/dzEslint.ts",
+        "line": 7
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable",
+            "summary": "Called before synthesis."
+          },
+          "locationInModule": {
+            "filename": "src/components/linter/dzEslint.ts",
+            "line": 32
+          },
+          "name": "preSynthesize",
+          "overrides": "projen.Component"
+        }
+      ],
+      "name": "DzEslint",
+      "properties": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/linter/dzEslint.ts",
+            "line": 8
+          },
+          "name": "eslintFile",
+          "type": {
+            "fqn": "projen.SampleFile"
+          }
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/linter/dzEslint.ts",
+            "line": 9
+          },
+          "name": "eslintTask",
+          "type": {
+            "fqn": "projen.Task"
+          }
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/linter/dzEslint.ts",
+            "line": 10
+          },
+          "name": "nodeProject",
+          "type": {
+            "fqn": "projen.javascript.NodeProject"
+          }
+        }
+      ],
+      "symbolId": "src/components/linter/dzEslint:DzEslint"
+    },
+    "dzuelu-projen.DzueluTypeScriptProject": {
+      "assembly": "dzuelu-projen",
+      "base": "projen.typescript.TypeScriptProject",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "dzuelu-projen.DzueluTypeScriptProject",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        },
+        "locationInModule": {
+          "filename": "src/dzueluTypeScriptProject.ts",
+          "line": 46
+        },
+        "parameters": [
+          {
+            "name": "options",
+            "type": {
+              "fqn": "dzuelu-projen.DzueluTypeScriptProjectOptions"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/dzueluTypeScriptProject.ts",
+        "line": 42
+      },
+      "name": "DzueluTypeScriptProject",
+      "properties": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "src/dzueluTypeScriptProject.ts",
+            "line": 43
+          },
+          "name": "dzEslint",
+          "optional": true,
+          "type": {
+            "fqn": "dzuelu-projen.DzEslint"
+          }
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "src/dzueluTypeScriptProject.ts",
+            "line": 44
+          },
+          "name": "githubRepoUrl",
+          "optional": true,
+          "type": {
+            "fqn": "dzuelu-projen.GithubRepoUrl"
+          }
+        }
+      ],
+      "symbolId": "src/dzueluTypeScriptProject:DzueluTypeScriptProject"
+    },
+    "dzuelu-projen.DzueluTypeScriptProjectOptions": {
+      "assembly": "dzuelu-projen",
+      "datatype": true,
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "dzuelu-projen.DzueluTypeScriptProjectOptions",
+      "interfaces": [
+        "projen.typescript.TypeScriptProjectOptions"
+      ],
+      "kind": "interface",
+      "locationInModule": {
+        "filename": "src/dzueluTypeScriptProject.ts",
+        "line": 7
+      },
+      "name": "DzueluTypeScriptProjectOptions",
+      "properties": [
+        {
+          "abstract": true,
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/dzueluTypeScriptProject.ts",
+            "line": 8
+          },
+          "name": "dzEslint",
+          "optional": true,
+          "type": {
+            "primitive": "boolean"
+          }
+        }
+      ],
+      "symbolId": "src/dzueluTypeScriptProject:DzueluTypeScriptProjectOptions"
+    },
+    "dzuelu-projen.GithubRepoUrl": {
+      "assembly": "dzuelu-projen",
+      "base": "projen.Component",
+      "docs": {
+        "stability": "stable"
+      },
+      "fqn": "dzuelu-projen.GithubRepoUrl",
+      "initializer": {
+        "docs": {
+          "stability": "stable"
+        },
+        "locationInModule": {
+          "filename": "src/components/github-repo-url.ts",
+          "line": 15
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "type": {
+              "fqn": "projen.javascript.NodeProject"
+            }
+          },
+          {
+            "name": "id",
+            "optional": true,
+            "type": {
+              "primitive": "string"
+            }
+          }
+        ]
+      },
+      "kind": "class",
+      "locationInModule": {
+        "filename": "src/components/github-repo-url.ts",
+        "line": 5
+      },
+      "methods": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 20
+          },
+          "name": "httpUrl",
+          "parameters": [
+            {
+              "name": "url",
+              "type": {
+                "primitive": "string"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "string"
+            }
+          },
+          "static": true
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 27
+          },
+          "name": "sshUrl",
+          "parameters": [
+            {
+              "name": "url",
+              "type": {
+                "primitive": "string"
+              }
+            }
+          ],
+          "returns": {
+            "type": {
+              "primitive": "string"
+            }
+          },
+          "static": true
+        },
+        {
+          "docs": {
+            "stability": "stable",
+            "summary": "Called before synthesis."
+          },
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 34
+          },
+          "name": "preSynthesize",
+          "overrides": "projen.Component"
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 53
+          },
+          "name": "setUrl"
+        }
+      ],
+      "name": "GithubRepoUrl",
+      "properties": [
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 6
+          },
+          "name": "allowedRemotes",
+          "type": {
+            "collection": {
+              "elementtype": {
+                "primitive": "string"
+              },
+              "kind": "array"
+            }
+          }
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 7
+          },
+          "name": "nodeProject",
+          "type": {
+            "fqn": "projen.javascript.NodeProject"
+          }
+        },
+        {
+          "docs": {
+            "stability": "stable"
+          },
+          "immutable": true,
+          "locationInModule": {
+            "filename": "src/components/github-repo-url.ts",
+            "line": 9
+          },
+          "name": "url",
+          "optional": true,
+          "type": {
+            "primitive": "string"
+          }
+        }
+      ],
+      "symbolId": "src/components/github-repo-url:GithubRepoUrl"
+    }
+  },
+  "version": "0.0.0",
+  "fingerprint": "jNY2V27WmvjFAI5VxuainGZnB4OkhSq0P0j2F/Yi630="
+}
