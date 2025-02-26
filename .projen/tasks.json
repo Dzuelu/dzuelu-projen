@@ -109,6 +109,9 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
+          "exec": "npx projen compile"
+        },
+        {
           "exec": "eslint . --fix"
         }
       ]

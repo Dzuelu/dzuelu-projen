@@ -11,4 +11,7 @@ project.addDeps('projen', 'constructs');
 
 project.AddComponent(new ProjenJsii(project));
 
+// Only needed here, recompile lint rules before running linter
+project.tasks.tryFind('eslint')?.prependExec('npx projen compile');
+
 project.synth();
