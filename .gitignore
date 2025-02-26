@@ -37,8 +37,11 @@ junit.xml
 !/.github/workflows/release.yml
 !/.github/workflows/upgrade-main.yml
 !/test/
-!/tsconfig.json
+!/tsconfig.dev.json
 !/src/
 /lib
 /dist/
+.jsii
+tsconfig.json
+!/API.md
 !/.projenrc.ts

@@ -29,7 +29,18 @@ export class DzueluJsiiProject extends JsiiProject {
       // @ts-ignore
       repositoryUrl: '',
       ...dzCommonOptionDefaults,
-      disableTsconfigDev: undefined, // jsii forced option...
+      disableTsconfigDev: false, // jsii forced option...
+      tsconfig: {
+        ...dzCommonOptionDefaults.tsconfig,
+        compilerOptions: {
+          // jsii enforced....
+          ...dzCommonOptionDefaults.tsconfig?.compilerOptions,
+          lib: ['ES2022'],
+          stripInternal: false,
+          target: 'ES2022'
+        }
+      },
+      // tsconfigDevFile: 'tsconfig.json',
       ...options
     });
 
@@ -41,6 +52,12 @@ export class DzueluJsiiProject extends JsiiProject {
     this.package.addField('files', ['dist/src']);
     this.package.addField('main', 'dist/src/index.js');
     this.package.addField('types', 'dist/src/index.d.ts');
+
+    this.package.addField('jsii', {
+      // eslint-disable-next-line
+      ...this.package.manifest?.jsii,
+      tsconfig: 'tsconfig.dev.json'
+    });
 
     this.dzEslint = new DzEslint(this);
     this.githubRepoUrl = new GithubRepoUrl(this);

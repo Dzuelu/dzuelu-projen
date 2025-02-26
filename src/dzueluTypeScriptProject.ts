@@ -27,10 +27,12 @@ export const dzCommonOptionDefaults: DzueluTypeScriptProjectOptions = {
     compilerOptions: {
       baseUrl: 'src',
       lib: ['ES2023'],
+      noEmitOnError: true,
       noFallthroughCasesInSwitch: undefined,
       noUnusedLocals: undefined,
       outDir: 'dist',
       rootDir: undefined,
+      skipLibCheck: true,
       target: 'ES2023',
       tsBuildInfoFile: undefined
     },
