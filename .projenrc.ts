@@ -1,11 +1,18 @@
-import { DzueluTypeScriptProject } from './src/dzueluTypeScriptProject';
+import { DzueluJsiiProject } from './src/dzueluJsiiProject';
 
-const project = new DzueluTypeScriptProject({
+const project = new DzueluJsiiProject({
+  author: 'Dzuelu',
+  authorAddress: 'projen@dzuelu.com',
+  defaultReleaseBranch: 'main',
   description: 'A simple standard way to setup a repo for typescript in a style Dzuelu likes.',
   name: 'dzuelu-projen',
-  releaseToNpm: true
+  releaseToNpm: true,
+  repositoryUrl: 'https://github.com/Dzuelu/dzuelu-projen.git'
 });
 
-project.addDeps('projen');
+project.addDeps('projen', 'constructs');
+
+// remove self, only for sub-projects
+// project.deps.removeDependency('');
 
 project.synth();

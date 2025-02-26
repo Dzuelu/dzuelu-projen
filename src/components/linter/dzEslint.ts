@@ -7,11 +7,11 @@ import { NodeProject } from 'projen/lib/javascript';
 export class DzEslint extends Component {
   public readonly eslintFile: SampleFile;
   public readonly eslintTask: Task;
-  public readonly project: NodeProject;
+  public readonly nodeProject: NodeProject;
 
   constructor(scope: NodeProject, id?: string) {
     super(scope, id ?? 'dzuelu-eslint');
-    this.project = scope;
+    this.nodeProject = scope;
     this.eslintFile = new SampleFile(scope, 'eslint.config.mjs', {
       contents: [
         // Print out manual default linter so we can change rules as wanted for any repo
@@ -22,15 +22,15 @@ export class DzEslint extends Component {
       ].join('\n')
     });
 
-    this.eslintTask = this.project.addTask('eslint', {
+    this.eslintTask = this.nodeProject.addTask('eslint', {
       description: 'Runs eslint against the codebase',
       exec: 'eslint . --fix'
     });
-    this.project.testTask.spawn(this.eslintTask);
+    this.nodeProject.testTask.spawn(this.eslintTask);
   }
 
   preSynthesize(): void {
-    this.project.addDevDeps(
+    this.nodeProject.addDevDeps(
       '@eslint/eslintrc',
       '@eslint/js',
       '@typescript-eslint/eslint-plugin',

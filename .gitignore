@@ -5,6 +5,7 @@
 !/.projen/files.json
 !/package.json
 !/LICENSE
+!/.npmignore
 logs
 *.log
 npm-debug.log*
@@ -41,4 +42,6 @@ junit.xml
 !/src/
 /lib
 /dist/
+.jsii
+!/API.md
 !/.projenrc.ts

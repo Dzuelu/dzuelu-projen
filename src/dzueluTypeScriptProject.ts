@@ -1,12 +1,45 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { GithubCredentials } from 'projen/lib/github';
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
-export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
-  dzEslint?: boolean;
-  name: string;
+export interface DzueluTypeScriptProjectOptions extends TypeScriptProjectOptions {
+  readonly dzEslint?: boolean;
 }
+
+export const dzCommonOptionDefaults: DzueluTypeScriptProjectOptions = {
+  defaultReleaseBranch: 'main', // Overridden by incoming param
+  disableTsconfigDev: true,
+  eslint: false,
+  githubOptions: {
+    mergify: false,
+    pullRequestLint: false
+  },
+  name: '', // Overridden by incoming param
+  npmignoreEnabled: false,
+  prettier: false,
+  projenCredentials: GithubCredentials.fromPersonalAccessToken({ secret: 'GITHUB_TOKEN' }),
+  projenrcTs: true,
+  pullRequestTemplate: false,
+  tsconfig: {
+    compilerOptions: {
+      baseUrl: 'src',
+      lib: ['ES2023'],
+      noEmitOnError: true,
+      noFallthroughCasesInSwitch: undefined,
+      noUnusedLocals: undefined,
+      outDir: 'dist',
+      rootDir: undefined,
+      skipLibCheck: true,
+      target: 'ES2023',
+      tsBuildInfoFile: undefined
+    },
+    exclude: ['.projenrc.ts'],
+    include: ['*.ts', '*/**.ts']
+  }
+} as DzueluTypeScriptProjectOptions;
 
 export class DzueluTypeScriptProject extends TypeScriptProject {
   dzEslint?: DzEslint;
@@ -14,31 +47,9 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
-      defaultReleaseBranch: 'main',
-      disableTsconfigDev: true,
-      eslint: false,
-      githubOptions: {
-        mergify: false,
-        pullRequestLint: false
-      },
-      npmignoreEnabled: false,
-      prettier: false,
-      projenrcTs: true,
-      pullRequestTemplate: false,
-      tsconfig: {
-        compilerOptions: {
-          baseUrl: 'src',
-          lib: ['ES2023'],
-          noFallthroughCasesInSwitch: undefined,
-          noUnusedLocals: undefined,
-          outDir: 'dist',
-          rootDir: undefined,
-          target: 'ES2023',
-          tsBuildInfoFile: undefined
-        },
-        exclude: ['.projenrc.ts'],
-        include: ['*.ts', '*/**.ts']
-      },
+      // @ts-ignore
+      defaultReleaseBranch: '',
+      ...dzCommonOptionDefaults,
       ...options
     });
 

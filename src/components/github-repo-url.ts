@@ -4,16 +4,17 @@ import { NodeProject } from 'projen/lib/javascript';
 
 export class GithubRepoUrl extends Component {
   public readonly allowedRemotes = ['remote.origin.url'];
-  public readonly project: NodeProject;
+  public readonly nodeProject: NodeProject;
 
   get url() {
     return this.repoUrl;
   }
+
   private repoUrl: string | undefined;
 
   constructor(project: NodeProject, id?: string) {
     super(project, id ?? 'github-repo-url');
-    this.project = project;
+    this.nodeProject = project;
   }
 
   static httpUrl(url: string): string {
@@ -30,7 +31,30 @@ export class GithubRepoUrl extends Component {
     return url;
   }
 
-  preSynthesize(): void {
+  public override preSynthesize(): void {
+    super.preSynthesize();
+    this.setUrl();
+
+    if (this.url != null) {
+      // eslint-disable-next-line
+      if (this.nodeProject.manifest?.homepage == null) {
+        this.nodeProject.package.addField('homepage', GithubRepoUrl.httpUrl(this.url));
+      }
+      // eslint-disable-next-line
+      if (this.nodeProject.manifest?.repository == null) {
+        this.nodeProject.package.addField('repository', {
+          type: 'git',
+          url: GithubRepoUrl.sshUrl(this.url)
+        });
+      }
+    }
+  }
+
+  public setUrl() {
+    if (this.url != null) {
+      return; // already set
+    }
+
     let remotes: string[];
     try {
       remotes = execSync('git config -l')
@@ -51,19 +75,5 @@ export class GithubRepoUrl extends Component {
       const found = remotes.find(remote => remote.startsWith(allowedRemote));
       return found?.split('=')[1];
     }, undefined);
-
-    if (this.url != null) {
-      // eslint-disable-next-line
-      if (this.project.manifest?.homepage == null) {
-        this.project.package.addField('homepage', GithubRepoUrl.httpUrl(this.url));
-      }
-      // eslint-disable-next-line
-      if (this.project.manifest?.repository == null) {
-        this.project.package.addField('repository', {
-          type: 'git',
-          url: GithubRepoUrl.sshUrl(this.url)
-        });
-      }
-    }
   }
 }
