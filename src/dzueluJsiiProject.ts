@@ -60,6 +60,7 @@ export class DzueluJsiiProject extends JsiiProject {
       ...this.package.manifest?.jsii,
       tsconfig: 'tsconfig.json'
     });
+    this.tasks.tryFind('package:js')?.prependSpawn(this.compileTask);
 
     this.dzEslint = new DzEslint(this);
     this.githubRepoUrl = new GithubRepoUrl(this);

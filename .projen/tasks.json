@@ -177,6 +177,9 @@
       "description": "Create js language bindings",
       "steps": [
         {
+          "spawn": "compile"
+        },
+        {
           "exec": "jsii-pacmak -v --target js"
         }
       ]
