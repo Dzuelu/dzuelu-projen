@@ -1,2 +1,2 @@
-export * from './components/dzEslintConfig';
+export * from './components/linter/dzEslintConfig';
 export * from './dzueluTypeScriptProject';
