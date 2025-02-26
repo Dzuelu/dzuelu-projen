@@ -62,6 +62,10 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.25.0"
   },
+  "dependencies": {
+    "constructs": "^10.4.2",
+    "projen": "^0.91.13"
+  },
   "main": "dist/src/index.js",
   "license": "Apache-2.0",
   "homepage": "https://github.com/Dzuelu/dzuelu-projen",
@@ -109,7 +113,7 @@
       "^.+\\.[t]sx?$": [
         "ts-jest",
         {
-          "tsconfig": "tsconfig.dev.json"
+          "tsconfig": "tsconfig.json"
         }
       ]
     }
@@ -123,7 +127,7 @@
       "outDir": "lib",
       "rootDir": "src"
     },
-    "tsconfig": "tsconfig.dev.json"
+    "tsconfig": "tsconfig.json"
   },
   "files": [
     "dist/src"

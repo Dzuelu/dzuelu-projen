@@ -4,7 +4,7 @@ import { NodeProject } from 'projen/lib/javascript';
 
 export class GithubRepoUrl extends Component {
   public readonly allowedRemotes = ['remote.origin.url'];
-  public readonly project: NodeProject;
+  public readonly nodeProject: NodeProject;
 
   get url() {
     return this.repoUrl;
@@ -13,7 +13,7 @@ export class GithubRepoUrl extends Component {
 
   constructor(project: NodeProject, id?: string) {
     super(project, id ?? 'github-repo-url');
-    this.project = project;
+    this.nodeProject = project;
   }
 
   static httpUrl(url: string): string {
@@ -54,12 +54,12 @@ export class GithubRepoUrl extends Component {
 
     if (this.url != null) {
       // eslint-disable-next-line
-      if (this.project.manifest?.homepage == null) {
-        this.project.package.addField('homepage', GithubRepoUrl.httpUrl(this.url));
+      if (this.nodeProject.manifest?.homepage == null) {
+        this.nodeProject.package.addField('homepage', GithubRepoUrl.httpUrl(this.url));
       }
       // eslint-disable-next-line
-      if (this.project.manifest?.repository == null) {
-        this.project.package.addField('repository', {
+      if (this.nodeProject.manifest?.repository == null) {
+        this.nodeProject.package.addField('repository', {
           type: 'git',
           url: GithubRepoUrl.sshUrl(this.url)
         });

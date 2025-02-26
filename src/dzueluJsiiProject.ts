@@ -40,6 +40,7 @@ export class DzueluJsiiProject extends JsiiProject {
           target: 'ES2022'
         }
       },
+      tsconfigDevFile: 'tsconfig.json',
       // tsconfigDevFile: 'tsconfig.json',
       ...options
     });
@@ -53,10 +54,14 @@ export class DzueluJsiiProject extends JsiiProject {
     this.package.addField('main', 'dist/src/index.js');
     this.package.addField('types', 'dist/src/index.d.ts');
 
+    // Jsii hacks
+    const jsiiFlags = ['--silence-warnings=reserved-word', '--no-fix-peer-dependencies'];
+    this.compileTask.reset(['jsii', ...jsiiFlags].join(' '));
+    this.watchTask.reset(['jsii', '-w', ...jsiiFlags].join(' '));
     this.package.addField('jsii', {
       // eslint-disable-next-line
       ...this.package.manifest?.jsii,
-      tsconfig: 'tsconfig.dev.json'
+      tsconfig: 'tsconfig.json'
     });
 
     this.dzEslint = new DzEslint(this);

@@ -8,7 +8,7 @@ const project = new DzueluJsiiProject({
   releaseToNpm: true
 });
 
-// project.addDeps('projen', 'constructs');
+project.addDeps('projen', 'constructs');
 
 // remove self, only for sub-projects
 // project.deps.removeDependency('');

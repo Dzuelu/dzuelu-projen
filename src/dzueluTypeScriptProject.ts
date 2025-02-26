@@ -4,14 +4,12 @@ import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescri
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
-export interface DzueluTypeScriptProjectOptions extends Omit<TypeScriptProjectOptions, 'defaultReleaseBranch'> {
-  defaultReleaseBranch?: string;
-  dzEslint?: boolean;
-  name: string;
+export interface DzueluTypeScriptProjectOptions extends TypeScriptProjectOptions {
+  readonly dzEslint?: boolean;
 }
 
 export const dzCommonOptionDefaults: DzueluTypeScriptProjectOptions = {
-  defaultReleaseBranch: 'main',
+  defaultReleaseBranch: 'main', // Overridden by incoming param
   disableTsconfigDev: true,
   eslint: false,
   githubOptions: {
