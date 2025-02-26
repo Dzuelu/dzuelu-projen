@@ -43,6 +43,7 @@ export class DzueluJsiiProject extends JsiiProject {
     this.package.removeScript('clobber');
     this.package.removeScript('default');
     this.package.removeScript('eject');
+    this.gitignore.removePatterns('tsconfig.json');
 
     this.package.addField('files', ['dist/src']);
     this.package.addField('main', 'dist/src/index.js');

@@ -43,6 +43,5 @@ junit.xml
 /lib
 /dist/
 .jsii
-tsconfig.json
 !/API.md
 !/.projenrc.ts
