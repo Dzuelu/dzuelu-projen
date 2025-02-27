@@ -13,7 +13,7 @@ import { ArrowParens, PrettierSettings, TrailingComma } from 'projen/lib/javascr
 import { config, configs, ConfigWithExtends, parser } from 'typescript-eslint';
 
 export const ignores: ConfigWithExtends = {
-  ignores: ['node_modules', 'dist', 'docs']
+  ignores: ['node_modules', 'dist', 'docs', 'package']
 };
 
 const jsExtensions = ['.mjs', '.js'];

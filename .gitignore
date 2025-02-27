@@ -43,4 +43,5 @@ junit.xml
 /dist
 /dist/
 .jsii
+package
 !/.projenrc.ts

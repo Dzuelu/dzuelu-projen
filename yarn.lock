@@ -3677,7 +3677,7 @@ jsii-rosetta@^5.7.6:
     workerpool "^6.5.1"
     yargs "^17.7.2"
 
-jsii@^5.7.6, jsii@~5.7.0:
+jsii@5, jsii@~5.7.0:
   version "5.7.6"
   resolved "https://registry.yarnpkg.com/jsii/-/jsii-5.7.6.tgz#a60c26854176d80ed7bb9545a3d30f0946f30576"
   integrity sha512-yh+LxT7tUTs30R5nbmI5hcjHaxqHdrYyd9jjR9uDWbkW4Aj8yvqX7U6eaOzQZPvolnBZ1pvgelIfO/KRqzSfog==

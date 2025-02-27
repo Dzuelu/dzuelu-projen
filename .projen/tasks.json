@@ -145,6 +145,21 @@
         {
           "spawn": "package-all",
           "condition": "node -e \"if (process.env.CI) process.exit(1)\""
+        },
+        {
+          "exec": "mkdir -p package"
+        },
+        {
+          "exec": "tar --strip-components=1 -xzvf dist/js/*.tgz -C package"
+        },
+        {
+          "exec": "cp .jsii package/.jsii"
+        },
+        {
+          "exec": "tar -czvf dist/js/dzuelu-projen@0.0.0.jsii.tgz package"
+        },
+        {
+          "exec": "rm -r package"
         }
       ]
     },

@@ -13,6 +13,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
+      artifactsDirectory: 'dist',
       disableTsconfigDev: true,
       eslint: false,
       githubOptions: {

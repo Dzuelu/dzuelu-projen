@@ -10,6 +10,7 @@ const project = new DzueluTypeScriptProject({
 });
 
 project.addDeps('projen', 'constructs');
+// project.addPeerDeps('projen', 'constructs');
 
 project.addComponent(
   new ProjenJsii(project, {

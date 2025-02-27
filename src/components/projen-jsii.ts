@@ -2,6 +2,8 @@ import { Component, Task } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
 import { JsiiPacmakTarget } from 'projen/lib/cdk/consts';
 
+const REPO_TEMP_DIRECTORY = 'package';
+
 export interface ProjenJsiiOptions {
   readonly author: string;
 }
@@ -23,11 +25,11 @@ export class ProjenJsii extends Component {
           rootDir: 'src'
         },
         tsconfig: 'tsconfig.json',
-        validateTsconfig: 'off'
+        validateTsconfig: 'minimal'
       }
     });
     project.addDevDeps('jsii', 'jsii-pacmak', 'jsii-rosetta');
-    project.gitignore.addPatterns('.jsii');
+    project.gitignore.addPatterns('.jsii', REPO_TEMP_DIRECTORY);
 
     if (project.npmignore == null) {
       throw new Error('npmignore required for jsii');
@@ -54,6 +56,13 @@ export class ProjenJsii extends Component {
       // Don't run in CI
       condition: `node -e "if (process.env.CI) process.exit(1)"`
     });
+
+    // Appends these commands to add the .jsii file into the bundle
+    project.packageTask.exec(`mkdir -p ${REPO_TEMP_DIRECTORY}`);
+    project.packageTask.exec(`tar --strip-components=1 -xzvf ${project.artifactsDirectory}/js/*.tgz -C ${REPO_TEMP_DIRECTORY}`);
+    project.packageTask.exec(`cp .jsii ${REPO_TEMP_DIRECTORY}/.jsii`);
+    project.packageTask.exec(`tar -czvf dist/js/${project.name}@0.0.0.jsii.tgz ${REPO_TEMP_DIRECTORY}`);
+    project.packageTask.exec(`rm -r ${REPO_TEMP_DIRECTORY}`);
   }
 
   private addPackagingTask(language: JsiiPacmakTarget): Task {
