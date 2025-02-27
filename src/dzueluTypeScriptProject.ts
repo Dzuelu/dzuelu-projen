@@ -15,6 +15,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     super({
       artifactsDirectory: 'dist',
       disableTsconfigDev: true,
+      dzEslint: false, // have to disable by default for jsii :(
       eslint: false,
       githubOptions: {
         mergify: false,
