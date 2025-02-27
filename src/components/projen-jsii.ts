@@ -27,6 +27,7 @@ export class ProjenJsii extends Component {
       }
     });
     project.addDevDeps('jsii', 'jsii-pacmak');
+    project.gitignore.addPatterns('.jsii');
 
     this.packageAllTask = project.tasks.addTask('package-all', {
       description: 'Packages artifacts for all target languages'
