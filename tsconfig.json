@@ -9,7 +9,7 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "lib": [
-      "ES2023"
+      "ES2022"
     ],
     "module": "CommonJS",
     "noEmitOnError": false,
@@ -22,7 +22,7 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "stripInternal": true,
-    "target": "ES2023",
+    "target": "ES2022",
     "baseUrl": "src"
   },
   "include": [
