@@ -1,25 +1,26 @@
+import { Component } from 'projen';
 import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescript';
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
-export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
-  dzEslint?: boolean;
-  name: string;
+export interface DzueluTypeScriptProjectOptions extends TypeScriptProjectOptions {
+  readonly dzEslint?: boolean;
 }
 
 export class DzueluTypeScriptProject extends TypeScriptProject {
+  addedComponents: Component[] = [];
   dzEslint?: DzEslint;
-  githubRepoUrl?: GithubRepoUrl;
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
-      defaultReleaseBranch: 'main',
+      artifactsDirectory: 'dist',
       disableTsconfigDev: true,
       eslint: false,
       githubOptions: {
         mergify: false,
         pullRequestLint: false
       },
+      libdir: 'dist',
       npmignoreEnabled: false,
       prettier: false,
       projenrcTs: true,
@@ -51,9 +52,13 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     this.package.addField('types', 'dist/src/index.d.ts');
 
     if (options.dzEslint ?? true) {
-      this.dzEslint = new DzEslint(this);
+      this.addComponent(new DzEslint(this));
     }
 
-    this.githubRepoUrl = new GithubRepoUrl(this);
+    this.addComponent(new GithubRepoUrl(this));
+  }
+
+  public addComponent(...components: Component[]) {
+    this.addedComponents.push(...components);
   }
 }

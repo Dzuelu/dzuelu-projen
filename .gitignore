@@ -5,6 +5,7 @@
 !/.projen/files.json
 !/package.json
 !/LICENSE
+!/.npmignore
 logs
 *.log
 npm-debug.log*
@@ -39,6 +40,8 @@ junit.xml
 !/test/
 !/tsconfig.json
 !/src/
-/lib
+/dist
 /dist/
+.jsii
+package
 !/.projenrc.ts

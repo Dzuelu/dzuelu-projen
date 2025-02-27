@@ -79,7 +79,7 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --build"
+          "exec": "jsii --silence-warnings=reserved-word --no-fix-peer-dependencies"
         }
       ]
     },
@@ -109,7 +109,7 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "npx projen compile"
+          "exec": "projen compile"
         },
         {
           "exec": "eslint . --fix"
@@ -139,10 +139,45 @@
       "description": "Creates the distribution package",
       "steps": [
         {
-          "exec": "mkdir -p dist/js"
+          "spawn": "package:js",
+          "condition": "node -e \"if (!process.env.CI) process.exit(1)\""
         },
         {
-          "exec": "npm pack --pack-destination dist/js"
+          "spawn": "package-all",
+          "condition": "node -e \"if (process.env.CI) process.exit(1)\""
+        },
+        {
+          "exec": "mkdir -p package"
+        },
+        {
+          "exec": "tar --strip-components=1 -xzvf dist/js/*.tgz -C package"
+        },
+        {
+          "exec": "cp .jsii package/.jsii"
+        },
+        {
+          "exec": "tar -czvf dist/js/dzuelu-projen@0.0.0.jsii.tgz package"
+        },
+        {
+          "exec": "rm -r package"
+        }
+      ]
+    },
+    "package-all": {
+      "name": "package-all",
+      "description": "Packages artifacts for all target languages",
+      "steps": [
+        {
+          "spawn": "package:js"
+        }
+      ]
+    },
+    "package:js": {
+      "name": "package:js",
+      "description": "Create js language bindings",
+      "steps": [
+        {
+          "exec": "jsii-pacmak -v --target js"
         }
       ]
     },
@@ -229,13 +264,13 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@eslint/eslintrc,@eslint/js,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-n,eslint-plugin-perfectionist,eslint-plugin-prettier,jest,prettier,projen,ts-jest,ts-node,typescript,typescript-eslint"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@eslint/eslintrc,@eslint/js,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,eslint,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-jest,eslint-plugin-n,eslint-plugin-perfectionist,eslint-plugin-prettier,jest,jsii,jsii-pacmak,jsii-rosetta,prettier,projen,ts-jest,ts-node,typescript,typescript-eslint,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @eslint/eslintrc @eslint/js @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version constructs eslint eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jest eslint-plugin-n eslint-plugin-perfectionist eslint-plugin-prettier jest jest-junit prettier projen ts-jest ts-node typescript typescript-eslint"
+          "exec": "yarn upgrade @eslint/eslintrc @eslint/js @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version constructs eslint eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-jest eslint-plugin-n eslint-plugin-perfectionist eslint-plugin-prettier jest jest-junit jsii jsii-pacmak jsii-rosetta prettier projen ts-jest ts-node typescript typescript-eslint"
         },
         {
           "exec": "npx projen"
