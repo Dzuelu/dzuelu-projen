@@ -15,7 +15,6 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     super({
       artifactsDirectory: 'dist',
       disableTsconfigDev: true,
-      dzEslint: false, // have to disable by default for jsii :(
       eslint: false,
       githubOptions: {
         mergify: false,
@@ -42,6 +41,8 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
       },
       ...options
     });
+
+    this.addDevDeps('dzuelu-projen');
 
     // scripts I don't want or use
     this.package.removeScript('clobber');

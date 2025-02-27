@@ -19,5 +19,7 @@ project.addComponent(
 
 // Only needed here, recompile lint rules before running linter
 project.tasks.tryFind('eslint')?.prependExec('projen compile');
+// remove self, only for sub projects
+project.deps.removeDependency('dzuelu-projen');
 
 project.synth();
