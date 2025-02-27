@@ -5,6 +5,7 @@ const project = new DzueluTypeScriptProject({
   defaultReleaseBranch: 'main',
   description: 'A simple standard way to setup a repo for typescript in a style Dzuelu likes.',
   name: 'dzuelu-projen',
+  npmignoreEnabled: true, // jsii
   releaseToNpm: true
 });
 

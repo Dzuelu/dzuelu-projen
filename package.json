@@ -46,6 +46,7 @@
     "jest-junit": "^16",
     "jsii": "^5.7.6",
     "jsii-pacmak": "^1.108.0",
+    "jsii-rosetta": "^5.7.6",
     "prettier": "^3.5.2",
     "projen": "^0.91.13",
     "ts-jest": "^29.2.6",
@@ -117,7 +118,7 @@
     "outdir": "dist",
     "targets": {},
     "tsc": {
-      "outDir": "lib",
+      "outDir": "dist",
       "rootDir": "src"
     },
     "tsconfig": "tsconfig.json",

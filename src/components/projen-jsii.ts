@@ -19,15 +19,22 @@ export class ProjenJsii extends Component {
         outdir: project.artifactsDirectory,
         targets: {},
         tsc: {
-          outDir: 'lib',
+          outDir: 'dist',
           rootDir: 'src'
         },
         tsconfig: 'tsconfig.json',
         validateTsconfig: 'off'
       }
     });
-    project.addDevDeps('jsii', 'jsii-pacmak');
+    project.addDevDeps('jsii', 'jsii-pacmak', 'jsii-rosetta');
     project.gitignore.addPatterns('.jsii');
+
+    if (project.npmignore == null) {
+      throw new Error('npmignore required for jsii');
+    }
+    // jsii updates .npmignore, so we make it writable
+    project.npmignore.readonly = false;
+    project.npmignore.include('.jsii');
 
     this.packageAllTask = project.tasks.addTask('package-all', {
       description: 'Packages artifacts for all target languages'
