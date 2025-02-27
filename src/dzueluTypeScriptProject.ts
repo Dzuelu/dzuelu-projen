@@ -3,18 +3,16 @@ import { TypeScriptProject, TypeScriptProjectOptions } from 'projen/lib/typescri
 import { GithubRepoUrl } from './components/github-repo-url';
 import { DzEslint } from './components/linter/dzEslint';
 
-export interface DzueluTypeScriptProjectOptions extends Partial<TypeScriptProjectOptions> {
-  dzEslint?: boolean;
-  name: string;
+export interface DzueluTypeScriptProjectOptions extends TypeScriptProjectOptions {
+  readonly dzEslint?: boolean;
 }
 
 export class DzueluTypeScriptProject extends TypeScriptProject {
-  AddedComponents: Component[] = [];
+  addedComponents: Component[] = [];
   dzEslint?: DzEslint;
 
   constructor(options: DzueluTypeScriptProjectOptions) {
     super({
-      defaultReleaseBranch: 'main',
       disableTsconfigDev: true,
       eslint: false,
       githubOptions: {
@@ -53,13 +51,13 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
     this.package.addField('types', 'dist/src/index.d.ts');
 
     if (options.dzEslint ?? true) {
-      this.AddComponent(new DzEslint(this));
+      this.addComponent(new DzEslint(this));
     }
 
-    this.AddComponent(new GithubRepoUrl(this));
+    this.addComponent(new GithubRepoUrl(this));
   }
 
-  public AddComponent(...components: Component[]) {
-    this.AddedComponents.push(...components);
+  public addComponent(...components: Component[]) {
+    this.addedComponents.push(...components);
   }
 }

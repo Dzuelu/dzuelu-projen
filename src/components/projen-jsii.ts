@@ -33,7 +33,7 @@ export class ProjenJsii extends Component {
     });
     this.packageJsTask = this.addPackagingTask('js');
 
-    const jsiiFlags = ['--silence-warnings=reserved-word'];
+    const jsiiFlags = ['--silence-warnings=reserved-word', '--no-fix-peer-dependencies'];
 
     project.compileTask.reset(['jsii', ...jsiiFlags].join(' '));
 
