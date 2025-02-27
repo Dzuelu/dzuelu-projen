@@ -1,6 +1,7 @@
 import { Component, Task } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
 import { JsiiPacmakTarget } from 'projen/lib/cdk/consts';
+import { Stability } from 'projen/lib/cdk';
 
 const REPO_TEMP_DIRECTORY = 'package';
 
@@ -26,7 +27,9 @@ export class ProjenJsii extends Component {
         },
         tsconfig: 'tsconfig.json',
         validateTsconfig: 'minimal'
-      }
+      },
+      stability: Stability.EXPERIMENTAL,
+      summary: ''
     });
     project.addDevDeps('jsii', 'jsii-pacmak', 'jsii-rosetta');
     project.gitignore.addPatterns('.jsii', REPO_TEMP_DIRECTORY);

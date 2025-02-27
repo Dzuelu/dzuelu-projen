@@ -15,7 +15,7 @@ export class DzEslint extends Component {
     this.eslintFile = new SampleFile(scope, 'eslint.config.mjs', {
       contents: [
         // Print out manual default linter so we can change rules as wanted for any repo
-        "import { defaultLint } from 'dzuelu-projen';",
+        "import { defaultLint } from 'dzuelu-projen/lint';",
         '',
         'export default defaultLint;',
         ''
