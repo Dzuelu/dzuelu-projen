@@ -79,7 +79,7 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --build"
+          "exec": "jsii --silence-warnings=reserved-word"
         }
       ]
     },

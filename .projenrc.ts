@@ -9,7 +9,11 @@ const project = new DzueluTypeScriptProject({
 
 project.addDeps('projen', 'constructs');
 
-project.AddComponent(new ProjenJsii(project));
+project.AddComponent(
+  new ProjenJsii(project, {
+    author: 'Dzuelu'
+  })
+);
 
 // Only needed here, recompile lint rules before running linter
 project.tasks.tryFind('eslint')?.prependExec('npx projen compile');

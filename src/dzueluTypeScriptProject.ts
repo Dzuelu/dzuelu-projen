@@ -21,6 +21,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
         mergify: false,
         pullRequestLint: false
       },
+      libdir: 'dist',
       npmignoreEnabled: false,
       prettier: false,
       projenrcTs: true,

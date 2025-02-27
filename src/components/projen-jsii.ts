@@ -2,19 +2,40 @@ import { Component, Task } from 'projen';
 import { NodeProject } from 'projen/lib/javascript';
 import { JsiiPacmakTarget } from 'projen/lib/cdk/consts';
 
+export interface ProjenJsiiOptions {
+  readonly author: string;
+}
+
 export class ProjenJsii extends Component {
   private readonly packageAllTask: Task;
   private readonly packageJsTask: Task;
 
-  constructor(project: NodeProject, id?: string) {
-    super(project, id ?? 'jsii');
+  constructor(project: NodeProject, options: ProjenJsiiOptions) {
+    super(project, 'jsii');
 
+    project.addFields({
+      author: options.author,
+      jsii: {
+        outdir: project.artifactsDirectory,
+        targets: {},
+        tsc: {
+          outDir: 'lib',
+          rootDir: 'src'
+        },
+        tsconfig: 'tsconfig.json',
+        validateTsconfig: 'off'
+      }
+    });
     project.addDevDeps('jsii', 'jsii-pacmak');
 
     this.packageAllTask = project.tasks.addTask('package-all', {
       description: 'Packages artifacts for all target languages'
     });
     this.packageJsTask = this.addPackagingTask('js');
+
+    const jsiiFlags = ['--silence-warnings=reserved-word'];
+
+    project.compileTask.reset(['jsii', ...jsiiFlags].join(' '));
 
     project.packageTask.reset();
     project.packageTask.spawn(this.packageJsTask, {

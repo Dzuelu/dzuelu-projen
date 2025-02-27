@@ -39,6 +39,6 @@ junit.xml
 !/test/
 !/tsconfig.json
 !/src/
-/lib
+/dist
 /dist/
 !/.projenrc.ts
