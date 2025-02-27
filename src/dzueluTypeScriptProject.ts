@@ -28,12 +28,12 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
       tsconfig: {
         compilerOptions: {
           baseUrl: 'src',
-          lib: ['ES2023'],
+          lib: ['ES2022'],
           noFallthroughCasesInSwitch: undefined,
           noUnusedLocals: undefined,
           outDir: 'dist',
           rootDir: undefined,
-          target: 'ES2023',
+          target: 'ES2022',
           tsBuildInfoFile: undefined
         },
         exclude: ['.projenrc.ts'],
