@@ -19,6 +19,6 @@ project.addComponent(
 );
 
 // Only needed here, recompile lint rules before running linter
-project.tasks.tryFind('eslint')?.prependExec('npx projen compile');
+project.tasks.tryFind('eslint')?.prependExec('projen compile');
 
 project.synth();
