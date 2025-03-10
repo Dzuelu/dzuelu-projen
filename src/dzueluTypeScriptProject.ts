@@ -31,6 +31,7 @@ export class DzueluTypeScriptProject extends TypeScriptProject {
           lib: ['ES2022'],
           noFallthroughCasesInSwitch: undefined,
           noUnusedLocals: undefined,
+          noUnusedParameters: undefined,
           outDir: 'dist',
           rootDir: undefined,
           target: 'ES2022',

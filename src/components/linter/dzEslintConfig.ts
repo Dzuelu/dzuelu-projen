@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import eslint from '@eslint/js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -52,12 +51,16 @@ export const ts: ConfigWithExtends = {
       { format: null, modifiers: ['requiresQuotes'], selector: 'default' },
       { format: ['camelCase', 'PascalCase', 'UPPER_CASE'], selector: 'default' }
     ],
+    '@typescript-eslint/no-empty-object-type': 'off',
+    '@typescript-eslint/no-useless-constructor': 'off',
     '@typescript-eslint/require-await': 'error',
+    '@typescript-eslint/restrict-template-expressions': 'off',
     camelcase: 'off',
     'import/extensions': ['error', 'never', { ignorePackages: true }],
     'import/no-duplicates': 'error',
+    'import/no-named-as-default': 'off',
     'no-throw-literal': 'error',
-    'perfectionist/sort-imports': ['error', { newlinesBetween: 'never', type: 'unsorted' }]
+    'perfectionist/sort-imports': 'off'
   },
   settings: {
     'import/extensions': tsExtensions.concat(jsExtensions),
