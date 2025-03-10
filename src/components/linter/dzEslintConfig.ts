@@ -29,7 +29,7 @@ export const ts: ConfigWithExtends = {
     configs.strictTypeChecked,
     configs.stylisticTypeChecked,
     eslint.configs.recommended,
-    // eslint-disable-next-line import/namespace
+    // eslint-disable-next-line import/namespace, @typescript-eslint/no-unsafe-member-access
     eslintPluginPerfectionist.configs['recommended-natural']
   ],
   files: [`**/*{${tsExtensions.join(',')}}`, `*${tsExtensions.join(',')}`],
